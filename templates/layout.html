@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sistema de Cadastro de Alunos</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>  
+
+    <script src="https://cdn.datatables.net/1.10.16/js/jquery.dataTables.min.js"></script>
+    <script src="https://cdn.datatables.net/1.10.16/js/dataTables.bootstrap4.min.js"></script>
+</head>
+<body>
+    <nav class="navbar navbar-dark bg-dark">
+        <a class="navbar-brand" href="/">Sistema de Cadastro de Alunos</a>
+        <a class="py-2 d-none d-md-inline-block" href="{{ url_for('logout') }}"><i class="fas fa-sign-out-alt"></i> Logout</a>
+    </nav>
+
+    <div class="container pt-4">
+        {% block body %}
+        {% endblock %}
+    </div>
+    <script>
+    const btnDelete= document.querySelectorAll('.btn-delete');
+    if(btnDelete) {
+    const btnArray = Array.from(btnDelete);
+    btnArray.forEach((btn) => {
+        btn.addEventListener('click', (e) => {
+        if(!confirm('Tem certeza que deseja remover esse item?')){
+            e.preventDefault();
+        }
+        });
+    })
+    }
+    $(document).ready(function() {
+        $('#example').DataTable({
+            "aLengthMenu":[[3, 5, 10, 25, -1], [3, 5, 10, 25, "All"]],
+            "iDisplayLength": 3
+        } 
+        );
+    } );
+
+    </script>
+</body>
+</html>

@@ -1,0 +1,52 @@
+{% extends "layout.html" %}
+{% block body %}
+  <div class="row">
+    <div class="col-md-4 offset-md-4">
+      <div class="card card-body">
+        <form action="/update/{{student.id}}" method="POST">
+            <div class="form-group">
+                <input type="text" name="matrícula" placeholder="Matrícula" value="{{student.matrícula}}" class="form-control">
+            </div>
+            <div class="form-group">
+                <input type="text" name="nome" placeholder="Nome" value="{{student.nome}}" class="form-control">
+            </div>
+            <div class="form-group">
+                <input type="text" name="cpf" placeholder="CPF" value="{{student.cpf}}" class="form-control">
+            </div>
+            <div class="form-group">
+                <input type="text" name="rg" placeholder="RG" value="{{student.rg}}" class="form-control">
+            </div>
+            <div class="form-group">
+                <input type="date" name="data_nascimento" value="{{student.data_nascimento}}" class="form-control">
+            </div>
+            <div class="form-group">
+                <input type="text" name="nome_do_pai" placeholder="Nome do pai" value="{{student.nome_do_pai}}" class="form-control">
+            </div>
+            <div class="form-group">
+                <input type="text" name="nome_da_mãe" placeholder="Nome da mãe" value="{{student.nome_da_mãe}}" class="form-control">
+            </div>
+            <div class="form-group">
+                <input type="text" name="sexo" placeholder="Sexo: (Masculino/Feminino)" value="{{student.sexo}}" class="form-control">
+            </div>
+            <div class="form-group">
+                <input type="text" name="email" placeholder="Email" value="{{student.email}}" class="form-control">
+            </div>
+            <div class="form-group">
+                <input type="tel" name="telefone_1" placeholder="Telefone 1" value="{{student.telefone_1}}" class="form-control">
+            </div>
+            <div class="form-group">
+                <input type="tel" name="telefone_2" placeholder="Telefone 2*" value="{{student.telefone_2}}" class="form-control">
+            </div>
+            <div class="form-group">
+                <input type="text" name="endereço" placeholder="Endereço" value="{{student.endereço}}" class="form-control">
+            </div>
+          <div class="form-group">
+            <button type="submit" class="btn btn-primary btn-block">
+              Update
+            </button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+{% endblock %}
