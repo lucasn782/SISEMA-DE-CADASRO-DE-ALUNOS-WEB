@@ -9,9 +9,9 @@ app = Flask(__name__)
 app.secret_key = "alunos"
 
 DB_HOST = "ec2-54-235-98-1.compute-1.amazonaws.com"
-DB_NAME = "d38uaml6icasp3"
-DB_USER = "pdlfrwyhzykixa"
-DB_PASS = "47741d44861d5aef64efcd588f9fe1baa954494f0f809d61d9c374caddac17d0"
+DB_NAME = "dc1lffooefe4rc"
+DB_USER = "txyyizymtfmwgx"
+DB_PASS = "976c82c12321ddac9eccc5bd074ae0db04e73adcf35591af184cb809ff798c67"
 
 conn = psycopg2.connect(dbname=DB_NAME, user=DB_USER, password=DB_PASS, host=DB_HOST)
 
@@ -110,10 +110,10 @@ def add_student():
         nome_da_mãe = request.form['nome_da_mãe']
         sexo = request.form['sexo']
         email = request.form['email']
-        telefone_1 = request.form['telefone_1']
-        telefone_2 = request.form['telefone_2']
+        telefone = request.form['telefone']
+        núcleo = request.form['núcleo']
         endereço = request.form['endereço']
-        cur.execute("INSERT INTO alunos (matrícula, nome, cpf, rg, data_nascimento, nome_do_pai, nome_da_mãe, sexo, email, telefone_1, telefone_2, endereço) VALUES (%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s)", (matrícula, nome, cpf, rg, data_nascimento, nome_do_pai, nome_da_mãe, sexo, email, telefone_1, telefone_2, endereço))
+        cur.execute("INSERT INTO alunos (matrícula, nome, cpf, rg, data_nascimento, nome_do_pai, nome_da_mãe, sexo, email, telefone, núcleo, endereço) VALUES (%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s)", (matrícula, nome, cpf, rg, data_nascimento, nome_do_pai, nome_da_mãe, sexo, email, telefone, núcleo, endereço))
         conn.commit()
         flash('Aluno adicionado com sucesso!')
         return redirect(url_for('Index'))
@@ -140,8 +140,8 @@ def update_student(id):
         nome_da_mãe = request.form['nome_da_mãe']
         sexo = request.form['sexo']
         email = request.form['email']
-        telefone_1 = request.form['telefone_1']
-        telefone_2 = request.form['telefone_2']
+        telefone = request.form['telefone']
+        núcleo = request.form['núcleo']
         endereço = request.form['endereço']
          
         cur = conn.cursor(cursor_factory=psycopg2.extras.DictCursor)
@@ -156,11 +156,11 @@ def update_student(id):
                 nome_da_mãe = %s,
                 sexo = %s,
                 email = %s,
-                telefone_1 = %s,
-                telefone_2 = %s,
+                telefone = %s,
+                núcleo = %s,
                 endereço = %s
             WHERE id = %s
-        """, (matrícula, nome, cpf, rg, data_nascimento, nome_do_pai, nome_da_mãe, sexo, email, telefone_1, telefone_2, endereço, id))
+        """, (matrícula, nome, cpf, rg, data_nascimento, nome_do_pai, nome_da_mãe, sexo, email, telefone, núcleo, endereço, id))
         flash('Aluno atualizado com sucesso!')
         conn.commit()
         return redirect(url_for('Index'))
